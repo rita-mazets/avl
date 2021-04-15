@@ -237,6 +237,15 @@ TEST_SUITE("Executor"){
         }
     }
     /* YOUR CODE HERE */
+    TEST_CASE("MyTest"){
+        SUBCASE("XORI"){
+            auto instruction = _decoder.Decode(0b000000011001'00010'100'01111'0010011);
+            instruction->_src1Val = 25;
+            _exe.Execute(instruction, IP);
+            CHECK_EQ(instruction->_data, (instruction->_src1Val ^ instruction->_imm.value()));
+            CHECK_EQ(instruction->_nextIp, IP + 4);
+        }
+    }
 }
 
 void testAlu(InstructionPtr &instruction, Executor &exe){

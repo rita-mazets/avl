@@ -223,6 +223,17 @@ TEST_SUITE("Decoder"){
     }
 
     /* YOUR CODE HERE */
+      TEST_CASE("MyTest"){
+        SUBCASE("XORI"){
+            auto instruction = _decoder.Decode(0b000000011001'00010'100'01111'0010011);
+            CHECK(instruction->_type == IType::Alu);
+            CHECK(instruction->_aluFunc == AluFunc::Xor);
+            CHECK(instruction->_dst.value() == 15);
+            CHECK(instruction->_src1.value() == 2);
+            CHECK(instruction->_imm.value() == 25);
+        }
+    }
+
 }
 
 void testBranch(InstructionPtr &instruction){
